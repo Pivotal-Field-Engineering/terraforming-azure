@@ -15,6 +15,9 @@ variable "env_name" {}
 variable "location" {}
 
 # Optional variables (the following have default values):
+variable "ops_manager_password" {
+  default = ""
+}
 
 variable "cloud_name" {
   description = "The Azure cloud environment to use. Available values at https://www.terraform.io/docs/providers/azurerm/#environment"
@@ -57,7 +60,7 @@ variable "pcf_virtual_network_address_space" {
 }
 
 variable "plane_cidr" {
-  default = "10.0.10.0/28"
+  default = "10.0.10.0/26"
 }
 
 variable "postgres_username" {
@@ -67,3 +70,8 @@ variable "postgres_username" {
 variable "external_db" {
   default = false
 }
+
+# ============== Generators
+resource "random_id" "ops_manager_password_generator" {
+  byte_length = 16
+
