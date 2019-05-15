@@ -96,6 +96,11 @@ output "ops_manager_private_ip" {
   value = "${module.ops_manager.ops_manager_private_ip}"
 }
 
+output "ops_manager_password" {
+  value     = "${var.ops_manager_password == "" ? random_id.ops_manager_password_generator.b64 : var.ops_manager_password}"
+  sensitive = true
+}
+
 # Control Plane ==========================================================================
 
 output "control_plane_subnet_cidr" {
